@@ -3,4 +3,5 @@ export class CreateUserDto {
   age: number;
   nameUser: string;
   surname: string;
+  tel: number;
 }

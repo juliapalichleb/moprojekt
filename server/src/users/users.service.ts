@@ -17,6 +17,7 @@ export class UsersService {
     age: number,
     nameUser: string,
     surname: string,
+    tel: number,
   ): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
@@ -24,6 +25,7 @@ export class UsersService {
       surname,
       email,
       age,
+      tel,
     });
   }
 }

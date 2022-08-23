@@ -1,31 +1,30 @@
 import './App.css';
-import axios from "axios";
-import { useState } from "react";
+import { Box } from "@mui/material";
+import PageDrawer from "./component/PageDrawer/PageDrawer";
+import { Route, Routes } from "react-router-dom";
+import Candidate from "./pages/Candidate/Candidate";
+import JobOffer from "./pages/JobOffer/JobOffer";
 
 function App() {
-const [data, setData] = useState();
-
-  const handleOnClick = () => {
-    axios.get('http://localhost:5000/api').then( ({data}) => setData(data) );
-    console.log(data)
-  }
-
-  const handleOnClick2 = () => {
-    axios.post('http://localhost:5000/users',{
-        email: "Marek",
-        nameUser: "Julia",
-        name: "Julia",
-        age: "10"
-    })
-  }
 
   return (
-    <div className="App">
-     <button onClick={handleOnClick}>KlIK</button>
-        <p>{data}</p>
-    <button onClick={handleOnClick2}>2KlIK2</button>
-        <p>{data}</p>
-    </div>
+      <Box sx={{ display:'flex' }}>
+          <PageDrawer></PageDrawer>
+          <Routes>
+              <Route path="/" element={<Candidate />}></Route>
+              <Route path="/Job" element={<JobOffer />}></Route>
+          </Routes>
+      </Box>
+              //
+              // {/*<Grid xs={10} sm={3}> <Item>3</Item></Grid>*/}
+              // {/*<div className="App">*/}
+              // {/*    <Card>*/}
+              // {/*        <button onClick={handleOnClick}>KlIK</button>*/}
+              // {/*        <p>{data}</p>*/}
+              // {/*        <button onClick={handleOnClick2}>2KlIK2</button>*/}
+              // {/*        <p>{data}</p>*/}
+              // {/*    </Card>*/}
+              // {/*</div>*/}
   );
 }
 

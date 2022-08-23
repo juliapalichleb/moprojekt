@@ -20,6 +20,7 @@ export class UsersController {
       createUserDto.age,
       createUserDto.nameUser,
       createUserDto.surname,
+      createUserDto.tel,
     );
   }
 }

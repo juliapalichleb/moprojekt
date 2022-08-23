@@ -19,6 +19,9 @@ export class User {
 
   @Prop()
   age: number;
+
+  @Prop()
+  tel: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

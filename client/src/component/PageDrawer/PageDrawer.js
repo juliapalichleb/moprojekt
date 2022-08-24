@@ -1,25 +1,24 @@
-import {Drawer, List, ListItemButton, ListItemText} from "@mui/material";
+import { Drawer, List, ListItemButton, ListItemText, ListSubheader } from "@mui/material";
 import FaceRoundedIcon from '@mui/icons-material/FaceRounded';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const PageDrawer = () =>{
+const PageDrawer = () => {
 const navigate = useNavigate();
     return (
-    <>
-        <Drawer variant="permanent" anchor="left" PaperProps={{sx: { width: 240,  bgcolor: '#E8E8E8' }}}>
-            <List>
+        <Drawer variant="permanent" anchor="left" PaperProps={{sx: { width: 200,  bgcolor: '#E8E8E8' }}}>
+            <List
+            subheader={<ListSubheader sx={{ bgcolor: '#E8E8E8' }}>Menu</ListSubheader>}>
                 <ListItemButton onClick={() => navigate('/')}>
-                    <FaceRoundedIcon></FaceRoundedIcon>
-                    <ListItemText>Candidate</ListItemText>
+                    <FaceRoundedIcon/>
+                    <ListItemText primary="Candidate"/>
                 </ListItemButton>
                 <ListItemButton onClick={() => navigate('/Job')}>
-                    <DescriptionRoundedIcon></DescriptionRoundedIcon>
-                    <ListItemText>Job Offers</ListItemText>
+                    <DescriptionRoundedIcon/>
+                    <ListItemText primary="Offers"/>
                 </ListItemButton>
             </List>
         </Drawer>
-    </>
     )
 }
 

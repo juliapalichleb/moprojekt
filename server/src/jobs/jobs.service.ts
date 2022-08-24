@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { JobsRepository } from './jobs.repository';
-import { Job } from './schemas/jobs.schema';
+import { Job, JobDocument } from './schemas/jobs.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class JobsService {
-  constructor(private readonly jobsRepository: JobsRepository) {}
+  constructor(@InjectModel(Job.name) private jobModel: Model<JobDocument>) {}
 
   async getJobs(): Promise<Job[]> {
-    return this.jobsRepository.find({});
+    return this.jobModel.find();
   }
 }

@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { JobsModule } from './jobs/jobs.module';
+import { StatusModule } from './status/status.module';
 
 @Module({
   imports: [
@@ -11,6 +12,8 @@ import { JobsModule } from './jobs/jobs.module';
     UsersModule,
     MongooseModule.forRoot('mongodb://localhost/demo'),
     JobsModule,
+    MongooseModule.forRoot('mongodb://localhost/demo'),
+    StatusModule,
   ],
   controllers: [AppController],
   providers: [AppService],

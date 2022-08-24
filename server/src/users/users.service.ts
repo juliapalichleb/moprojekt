@@ -12,6 +12,10 @@ export class UsersService {
     return this.userModel.find();
   }
 
+  async getUserById(_id: string): Promise<User> {
+    return this.userModel.findOne({ _id });
+  }
+
   async createUser(
     email: string,
     age: number,
@@ -25,5 +29,15 @@ export class UsersService {
       age,
       tel,
     });
+  }
+
+  async updateUser(_id: string, status: string): Promise<User> {
+    return this.userModel.findOneAndUpdate(
+      { _id },
+      { status },
+      {
+        new: true,
+      },
+    );
   }
 }

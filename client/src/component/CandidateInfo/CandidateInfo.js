@@ -4,6 +4,7 @@ import {setSelectedCandidate} from "../../redux/dataSlice";
 import { useDispatch } from "react-redux";
 
 const CandidateInfo = ({ candidate }) => {
+    console.log(candidate.status.step)
     const { nameUser, email, age, tel, status } = candidate;
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const CandidateInfo = ({ candidate }) => {
                             <Typography variant="body2" sx={{ color:"text.secondary" }}>tel: {tel}</Typography>
                         </Box>
                         <Box>
-                            <Stepper activeStep={2} alternativeLabel>
+                            <Stepper activeStep={status.step} alternativeLabel>
                                     <Step>
                                         <StepLabel>Telephone</StepLabel>
                                     </Step>

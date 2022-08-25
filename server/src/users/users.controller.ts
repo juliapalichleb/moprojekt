@@ -8,14 +8,23 @@ import { UpdateUserDto } from './dto/update-user';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get(':_id')
-  async getUser(@Param('_id') _id: string): Promise<User> {
-    return this.usersService.getUserById(_id);
-  }
+  // @Get(':_id')
+  // async getUser(@Param('_id') _id: string): Promise<User> {
+  //   return this.usersService.getUserById(_id);
+  // }
 
+  // @Get()
+  // async getUsers(): Promise<User[]> {
+  //   return this.usersService.getUsers();
+  // }
+
+  // @Get(':_id')
+  // async getUserWithStatus(@Param('_id') _id: string): Promise<User> {
+  //   return this.usersService.getWithStatus(_id);
+  // }
   @Get()
-  async getUsers(): Promise<User[]> {
-    return this.usersService.getUsers();
+  async getUserWithStatus(): Promise<User[]> {
+    return this.usersService.getWithStatus();
   }
 
   @Post()

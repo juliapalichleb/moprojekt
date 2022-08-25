@@ -9,7 +9,7 @@ export class Status {
   name: string;
 
   @Prop()
-  step: string;
+  step: number;
 }
 
 export const StatusSchema = SchemaFactory.createForClass(Status);

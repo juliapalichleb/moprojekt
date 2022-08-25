@@ -17,7 +17,7 @@ const Candidate = () => {
          axios.get('http://localhost:5000/status')
              .then(({ data }) => dispatch(setStatusData(data)))
     },[])
-
+console.log(dataGet)
     return (
             <Box sx={{ width:"100%", height:"100%", background:'#525252', display:"flex", alignItems:"center", flexDirection:"column" }}>
                 {dataGet && dataGet.map((user, i) => <CandidateInfo candidate={user} key={i} />)}

@@ -8,6 +8,10 @@ import { Model } from 'mongoose';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
+  async getWithStatus() {
+    return this.userModel.find().populate('status');
+  }
+
   async getUsers(): Promise<User[]> {
     return this.userModel.find();
   }

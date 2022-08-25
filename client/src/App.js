@@ -4,6 +4,7 @@ import PageDrawer from "./component/PageDrawer/PageDrawer";
 import { Route, Routes } from "react-router-dom";
 import FirstPage from "./pages/FirstPage/FirstPage";
 import SecondPage from "./pages/SecondPage/SecondPage";
+import ThirdPage from "./pages/ThirdPage/ThirdPage";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                   <Routes>
                       <Route path="/" element={<FirstPage />}></Route>
                       <Route path="/Job" element={<SecondPage />}></Route>
+                      <Route path="/CandidateProfile" element={<ThirdPage />}></Route>
                   </Routes>
               </Grid>
           </Grid>

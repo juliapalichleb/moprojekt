@@ -4,9 +4,9 @@ import axios from "axios";
 
 const ThirdPage = () => {
     const { selectedCandidate, statusData } = useSelector((state) => state.dataReducer)
-    console.log(selectedCandidate._id)
+
     const handleClick = (number) => {
-        axios.patch('http://localhost:5000/users/6304cbad0486f37004e851e2`',{status:"1"})
+        axios.patch('http://localhost:5000/users/'+`${selectedCandidate._id}`,{status:number})
 
     }
     return (
@@ -20,10 +20,11 @@ const ThirdPage = () => {
                     <Typography variant="body2" sx={{ color:"text.secondary" }}>tel: {selectedCandidate.tel}</Typography>
                 </Box>
                 <Box>
-                    <button onClick={() => handleClick(1)}>1</button>
-                    <button onClick={() => handleClick(2)}>2</button>
-                    <button onClick={() => handleClick(3)}>3</button>
-                    <button onClick={() => handleClick(4)}>4</button>
+
+                </Box>
+                <Box>
+                        {statusData && statusData.map((statusData, i) =>
+                            <button onClick={() => handleClick(statusData._id)} key={i}>{statusData.name}</button>)}
                 </Box>
             </CardContent>
         </Card>

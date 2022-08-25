@@ -3,13 +3,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import CandidateInfo from "../CandidateInfo/CandidateInfo";
+import {useDispatch} from "react-redux";
+import {setStatusData} from "../../redux/dataSlice";
 
 const Candidate = () => {
     const [dataGet, setDataGet] = useState();
+    const dispatch = useDispatch();
 
      useEffect( () => {
         axios.get('http://localhost:5000/users')
             .then(({ data }) => setDataGet(data))
+
+         axios.get('http://localhost:5000/status')
+             .then(({ data }) => dispatch(setStatusData(data)))
     },[])
 
     return (

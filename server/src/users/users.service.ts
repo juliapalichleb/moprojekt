@@ -31,7 +31,7 @@ export class UsersService {
     });
   }
 
-  async updateUser(_id: string, status: string): Promise<User> {
+  async updateUser(_id, status): Promise<User> {
     return this.userModel.findOneAndUpdate(
       { _id },
       { status },

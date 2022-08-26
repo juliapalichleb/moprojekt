@@ -7,9 +7,6 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   @Prop()
-  userId: string;
-
-  @Prop()
   nameUser: string;
 
   @Prop()
@@ -19,7 +16,10 @@ export class User {
   age: number;
 
   @Prop()
-  tel: number;
+  tel: string;
+
+  @Prop()
+  date: Date;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Status' })
   status: Status;

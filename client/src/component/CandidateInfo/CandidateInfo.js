@@ -4,8 +4,7 @@ import {setSelectedCandidate} from "../../redux/dataSlice";
 import { useDispatch } from "react-redux";
 
 const CandidateInfo = ({ candidate }) => {
-    console.log(candidate.status.step)
-    const { nameUser, email, age, tel, status } = candidate;
+    const { nameUser, email, age, tel, status, date } = candidate;
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -15,10 +14,10 @@ const CandidateInfo = ({ candidate }) => {
     }
 
     return (
-        <Card sx={{ width:"50%", margin:"5px" }}>
+        <Card sx={{ width:"60%", margin:"5px" }}>
                 <ListItemButton onClick={handleClick}>
                     <CardContent sx={{display:"flex"}}>
-                        <Box sx={{marginRight:"50px"}}>
+                        <Box sx={{width:"300px"}}>
                             <Typography variant="h5">{nameUser}</Typography>
                             <Typography variant="h8" sx={{ color:"text.secondary" }}>E-mail: {email}</Typography>
                             <Typography variant="body2" sx={{ color:"text.secondary" }}>Age: {age}</Typography>
@@ -42,7 +41,7 @@ const CandidateInfo = ({ candidate }) => {
                         </Box>
                         <Box sx={{marginLeft:"50px"}}>
                             <Typography variant="h5">Last Update</Typography>
-                            <Typography variant="h8" sx={{ color:"text.secondary" }}>Date: 26.08.2022</Typography>
+                            <Typography variant="h8" sx={{ color:"text.secondary" }}>Date: {date}</Typography>
                         </Box>
                     </CardContent>
                 </ListItemButton>

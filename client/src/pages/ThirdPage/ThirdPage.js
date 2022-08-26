@@ -1,34 +1,27 @@
-import { useSelector } from "react-redux";
-import {Box, Card, CardContent, Typography} from "@mui/material";
-import axios from "axios";
+import {Box, Card, CardContent, Grid} from "@mui/material";
+import CandidateProfile from "../../component/CandidateProfile/CandidateProfile";
+import StatusStepper from "../../component/StatusStepper/StatusStepper";
+import DeletingCandidate from "../../component/DeletingCandidate/DeletingCandidate";
 
-const ThirdPage = () => {
-    const { selectedCandidate, statusData } = useSelector((state) => state.dataReducer)
+const ThirdPage = () =>
+        <Box sx={{ width:"100%", height:"100%", background:'#525252', display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
+            <Card sx={{ width:"50%", margin:"100px" }}>
+                <CardContent>
+                    <Grid container my={2}>
+                        <Grid container spacing={30}  item xs={12} sx={{display:"flex"}}>
+                            <CandidateProfile/>
+                        </Grid>
 
-    const handleClick = (number) => {
-        axios.patch('http://localhost:5000/users/'+`${selectedCandidate._id}`,{status:number})
+                        <Grid container item xs={12} mt={2} spacing={3} sx={{display:"flex", flexDirection:"column"}}>
+                            <StatusStepper/>
+                        </Grid>
 
-    }
-    return (
-    <Box sx={{ width:"100%", height:"100%", background:'#525252', display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
-        <Card sx={{ width:"50%", margin:"5px" }}>
-            <CardContent>
-                <Box>
-                    <Typography variant="h5">{selectedCandidate.nameUser}</Typography>
-                    <Typography variant="h8" sx={{ color:"text.secondary" }}>E-mail: {selectedCandidate.email}</Typography>
-                    <Typography variant="body2" sx={{ color:"text.secondary" }}>Age: {selectedCandidate.age}</Typography>
-                    <Typography variant="body2" sx={{ color:"text.secondary" }}>tel: {selectedCandidate.tel}</Typography>
-                </Box>
-                <Box>
+                        <Grid container item xs={12} mt={2} sx={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                            <DeletingCandidate sx={{margin:"50px"}}/>
+                        </Grid>
+                    </Grid>
+                </CardContent>
+            </Card>
+        </Box>
 
-                </Box>
-                <Box>
-                        {statusData && statusData.map((statusData, i) =>
-                            <button onClick={() => handleClick(statusData._id)} key={i}>{statusData.name}</button>)}
-                </Box>
-            </CardContent>
-        </Card>
-    </Box>
-    )
-}
 export default ThirdPage;

@@ -1,12 +1,12 @@
-import {Box, Button, Grid, Step, StepLabel, Stepper, Typography} from "@mui/material";
+import { Button, Grid, Step, StepLabel, Stepper, Typography} from "@mui/material";
 import {useSelector} from "react-redux";
 import axios from "axios";
 
 const StatusStepper = () => {
     const { selectedCandidate, statusData } = useSelector((state) => state.dataReducer)
+
     const handleClick = (number) => {
-        const current = new Date();
-        const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+        const date = `${new Date().toISOString().slice(0, 10)}`;
         axios.patch('http://localhost:5000/users/'+`${selectedCandidate._id}`,{status:number, date:date})}
 
     return (
@@ -27,9 +27,7 @@ const StatusStepper = () => {
                     ))}
                 </Stepper>
             </Grid>
-            <Grid item sx={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-                <Button variant="contained">Next Stage</Button>
-            </Grid>
+
         </>
     )
 }

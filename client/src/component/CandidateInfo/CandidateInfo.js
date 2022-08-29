@@ -14,7 +14,7 @@ const CandidateInfo = ({ candidate }) => {
     }
 
     return (
-        <Card sx={{ width:"60%", margin:"5px" }}>
+        <Card sx={{ width:"55%", margin:"5px" }}>
                 <ListItemButton onClick={handleClick}>
                     <CardContent sx={{display:"flex"}}>
                         <Box sx={{width:"300px"}}>

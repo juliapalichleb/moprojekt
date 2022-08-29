@@ -1,33 +1,33 @@
 import {Box, Button} from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
-
 import CandidateInfo from "../CandidateInfo/CandidateInfo";
-import {useDispatch} from "react-redux";
-import {setNewUserDialog, setStatusData} from "../../redux/dataSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setAllCandidate, setNewUserDialog, setStatusData} from "../../redux/dataSlice";
 import NewCandidate from "../NewCandidate/NewCandidate";
 
 const Candidate = () => {
-    const [dataGet, setDataGet] = useState();
-    const dispatch = useDispatch();
+    const {allCandidate} = useSelector( (state) => state.dataReducer)
+    const dispatch =useDispatch();
 
-     useEffect( () => {
+    useEffect( () => {
         axios.get('http://localhost:5000/users')
-            .then(({ data }) => setDataGet(data))
+            .then(({ data }) => dispatch(setAllCandidate(data)))
 
-         axios.get('http://localhost:5000/status')
-             .then(({ data }) => dispatch(setStatusData(data)))
+        axios.get('http://localhost:5000/status')
+            .then(({ data }) => dispatch(setStatusData(data)))
     },[])
+
 
     return (
         <>
             <Button variant="contained" onClick={() => dispatch(setNewUserDialog(true))} sx={{ml:3}}>Add Candidate</Button>
 
             <Box sx={{ width:"100%", height:"100%", background:'#525252', display:"flex", alignItems:"center", flexDirection:"column" }}>
-                {dataGet && dataGet.map((user, i) => <CandidateInfo candidate={user} key={i} />)}
+                {allCandidate && allCandidate.map((user, i) => <CandidateInfo candidate={user} key={i} />)}
             </Box>
 
-             <NewCandidate/>
+             <NewCandidate sx={{ width:"100%"}}/>
         </>
     )
 }

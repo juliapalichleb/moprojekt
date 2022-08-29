@@ -1,8 +1,8 @@
-import {TextField, Typography} from "@mui/material";
+import { TextField, Typography} from "@mui/material";
 import {useField} from "formik";
 
 const FormInput = ({ ...props }) => {
-    const [field, meta] = useField(props)
+    const [field] = useField(props)
 
     return (
         <>

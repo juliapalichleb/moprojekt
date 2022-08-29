@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
 import { User, UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Query } from 'mongoose';
@@ -38,7 +37,7 @@ export class UsersService {
       age,
       tel,
       status,
-      date: Date(),
+      date: new Date().toISOString().slice(0, 10),
     });
   }
 

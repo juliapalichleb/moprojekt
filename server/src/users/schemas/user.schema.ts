@@ -19,7 +19,7 @@ export class User {
   tel: string;
 
   @Prop()
-  date: Date;
+  date: string;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Status' })
   status: Status;

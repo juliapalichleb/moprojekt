@@ -14,18 +14,32 @@ export const dataSlice = createSlice({
     reducers: {
         setAllCandidate: (state, action) => {
             state.initCandidate = action.payload
-            state.allCandidate =action.payload
+            state.allCandidate = action.payload
+
+        },
+        searchingByName: (state, action) => {
+            const searchingText = action.payload;
+
+            state.allCandidate = [...state.initCandidate].filter((data) => data.nameUser.toLowerCase().includes(searchingText.toLowerCase()))
+
         },
         filterCandidate: (state, action) => {
-            const allResults =  state.initCandidate;
             const filterData = action.payload;
 
             if(!isEmpty(filterData)) {
-                state.allCandidate = allResults.filter((data) => filterData.includes(data.status.name))
+                state.allCandidate = [...state.initCandidate].filter((data) => filterData.includes(data.status.name))
                     .map((filterData) => {return filterData});
             } else {
-                state.allCandidate = state.initCandidate;
+                state.allCandidate = [...state.initCandidate];
             }
+
+        },
+        sortingCandidate: (state, action) => {
+            const sortingType = action.payload
+            if( sortingType === 'Acs' )
+                state.allCandidate = [...state.allCandidate].sort((a,b) => a.date < b.date ? 1 : -1)
+            if ( sortingType === 'Desc' )
+                state.allCandidate = [...state.allCandidate].sort((a,b) => a.date > b.date ? 1 : -1)
 
         },
         setSelectedCandidate: (state, action) => {
@@ -40,13 +54,13 @@ export const dataSlice = createSlice({
         },
         createNewCandidate: (state, action) => {
             const newUserData = action.payload;
-            console.log(newUserData)
             axios.post('http://localhost:5000/users',newUserData)
 
         }
     },
 })
 
-export const { setSelectedCandidate, setStatusData, setNewUserDialog, createNewCandidate, setAllCandidate, filterCandidate } = dataSlice.actions
+export const { setSelectedCandidate, setStatusData, setNewUserDialog, createNewCandidate,
+                setAllCandidate,searchingByName, filterCandidate, sortingCandidate} = dataSlice.actions
 
 export default dataSlice.reducer

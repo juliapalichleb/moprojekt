@@ -6,7 +6,7 @@ const StatusStepper = () => {
     const { selectedCandidate, statusData } = useSelector((state) => state.dataReducer)
 
     const handleClick = (number) => {
-        const date = `${new Date().toISOString().slice(0, 10)}`;
+        const date = `${new Date().toISOString()}`;
         axios.patch('http://localhost:5000/users/'+`${selectedCandidate._id}`,{status:number, date:date})}
 
     return (

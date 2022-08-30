@@ -37,7 +37,7 @@ export class UsersService {
       age,
       tel,
       status,
-      date: new Date().toISOString().slice(0, 10),
+      date: new Date().toISOString(),
     });
   }
 

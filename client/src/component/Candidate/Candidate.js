@@ -18,12 +18,11 @@ const Candidate = () => {
             .then(({ data }) => dispatch(setStatusData(data)))
     },[])
 
-
     return (
         <>
-            <Button variant="contained" onClick={() => dispatch(setNewUserDialog(true))} sx={{ml:3}}>Add Candidate</Button>
+            <Button variant="contained" onClick={() => dispatch(setNewUserDialog(true))} sx={{ml:3, bgcolor:"#1976d2"}}>Add Candidate</Button>
 
-            <Box sx={{ width:"100%", height:"100%", background:'#525252', display:"flex", alignItems:"center", flexDirection:"column" }}>
+            <Box sx={{ width:"100%", height:"100%", display:"flex", alignItems:"center", flexDirection:"column" }}>
                 {allCandidate && allCandidate.map((user, i) => <CandidateInfo candidate={user} key={i} />)}
             </Box>
 

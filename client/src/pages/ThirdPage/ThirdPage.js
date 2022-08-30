@@ -4,7 +4,7 @@ import StatusStepper from "../../component/StatusStepper/StatusStepper";
 import DeletingCandidate from "../../component/DeletingCandidate/DeletingCandidate";
 
 const ThirdPage = () =>
-        <Box sx={{ width:"100%", height:"100%", background:'#525252', display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
+        <Box sx={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
             <Card sx={{ width:"50%", margin:"100px" }}>
                 <CardContent>
                     <Grid container my={2}>

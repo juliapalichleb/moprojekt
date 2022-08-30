@@ -41,7 +41,7 @@ const CandidateInfo = ({ candidate }) => {
                         </Box>
                         <Box sx={{marginLeft:"50px"}}>
                             <Typography variant="h5">Last Update</Typography>
-                            <Typography variant="h8" sx={{ color:"text.secondary" }}>Date: {date}</Typography>
+                            <Typography variant="h8" sx={{ color:"text.secondary" }}>Date: {date.slice(0, 10)}</Typography>
                         </Box>
                     </CardContent>
                 </ListItemButton>

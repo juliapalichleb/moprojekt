@@ -22,6 +22,7 @@ const SortDate = () => {
                     renderValue={(selected) => isEmpty(selected) ? 'Sort date' : selected}
                     displayEmpty
             >
+                <MenuItem value={'Unsorted'}>Unsorted</MenuItem>
                 <MenuItem value={'Desc'}>Desc</MenuItem>
                 <MenuItem value={'Acs'}>Acs</MenuItem>
             </Select>

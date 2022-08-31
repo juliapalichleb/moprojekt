@@ -44,10 +44,13 @@ export const dataSlice = createSlice({
         },
         sortingCandidate: (state, action) => {
             const sortingType = action.payload
+
             if( sortingType === 'Acs' )
                 state.sortResults = [...state.initCandidate].sort((a,b) => a.date < b.date ? 1 : -1)
             if ( sortingType === 'Desc' )
                 state.sortResults = [...state.initCandidate].sort((a,b) => a.date > b.date ? 1 : -1)
+            if( sortingType === 'Unsorted')
+                state.sortResults = [...state.initCandidate]
 
             state.allCandidate = state.sortResults
         },

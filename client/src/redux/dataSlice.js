@@ -52,7 +52,8 @@ export const dataSlice = createSlice({
             if( sortingType === 'Unsorted')
                 state.sortResults = [...state.initCandidate]
 
-            state.allCandidate = state.sortResults
+            if(!isEmpty(state.filterResults) && !isEmpty(state.searchResults))
+                state.allCandidate = state.sortResults
         },
         setSelectedCandidate: (state, action) => {
             state.selectedCandidate = action.payload

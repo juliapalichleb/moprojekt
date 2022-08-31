@@ -1,13 +1,6 @@
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    TextField
-} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {setNewUserDialog} from "../../redux/dataSlice";
+import { Dialog, DialogTitle } from "@mui/material";
+import { useSelector } from "react-redux";
+
 import NewCandidateForm from "../NewCandidateForm/NewCandidateForm";
 
 const NewCandidate = () => {
@@ -20,4 +13,5 @@ const NewCandidate = () => {
             </Dialog>
     )
 }
+
 export default NewCandidate;

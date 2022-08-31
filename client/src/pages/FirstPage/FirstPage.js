@@ -1,7 +1,7 @@
+import { Grid } from "@mui/material";
+
 import Candidate from "../../component/Candidate/Candidate";
 import HeaderBarCandidate from "../../component/HeaderBarCandidate/HeaderBarCandidate";
-
-import { Grid } from "@mui/material";
 
 const FirstPage = () =>
         <>

@@ -1,9 +1,5 @@
-import {
-    AppBar,
-    Box,
-    Toolbar,
-    Typography
-} from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+
 import FilterStatus from "../FilterStatus/FilterStatus";
 import SortDate from "../SortDate/SortDate";
 import SearchField from "../SearchField/SearchField";

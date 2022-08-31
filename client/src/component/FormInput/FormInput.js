@@ -1,5 +1,5 @@
-import { TextField, Typography} from "@mui/material";
-import {useField} from "formik";
+import { TextField, Typography } from "@mui/material";
+import { useField } from "formik";
 
 const FormInput = ({ ...props }) => {
     const [field] = useField(props)
@@ -7,9 +7,8 @@ const FormInput = ({ ...props }) => {
     return (
         <>
             <Typography>{props.label}</Typography>
-            <TextField {...field} {...props}  variant="outlined" />
+            <TextField {...field} {...props} variant="outlined" />
         </>
-
     )
 }
 

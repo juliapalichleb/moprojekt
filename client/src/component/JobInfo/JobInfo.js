@@ -1,4 +1,4 @@
-import {Card, CardContent, ListItemButton, Typography} from "@mui/material";
+import { Card, CardContent, ListItemButton, Typography } from "@mui/material";
 
 const JobInfo = ({ job }) => {
     const { name } = job;

@@ -1,7 +1,8 @@
-import {Box, Card, CardContent, ListItemButton, Step, StepLabel, Stepper, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
-import {setSelectedCandidate} from "../../redux/dataSlice";
+import { Box, Card, CardContent, ListItemButton, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import { setSelectedCandidate } from "../../redux/dataSlice";
 
 const CandidateInfo = ({ candidate }) => {
     const { nameUser, email, age, tel, status, date } = candidate;
@@ -16,8 +17,8 @@ const CandidateInfo = ({ candidate }) => {
     return (
         <Card sx={{ width:"55%", margin:"5px" }}>
                 <ListItemButton onClick={handleClick}>
-                    <CardContent sx={{display:"flex"}}>
-                        <Box sx={{width:"300px"}}>
+                    <CardContent sx={{ display:"flex" }}>
+                        <Box sx={{ width:"300px" }}>
                             <Typography variant="h5">{nameUser}</Typography>
                             <Typography variant="h8" sx={{ color:"text.secondary" }}>E-mail: {email}</Typography>
                             <Typography variant="body2" sx={{ color:"text.secondary" }}>Age: {age}</Typography>
@@ -25,21 +26,21 @@ const CandidateInfo = ({ candidate }) => {
                         </Box>
                         <Box>
                             <Stepper activeStep={status.step} alternativeLabel>
-                                    <Step>
-                                        <StepLabel>Telephone</StepLabel>
-                                    </Step>
-                                    <Step>
-                                        <StepLabel>Interview</StepLabel>
-                                    </Step>
-                                    <Step>
-                                        <StepLabel>Human Resources</StepLabel>
-                                    </Step>
-                                    <Step>
-                                        <StepLabel>Decision</StepLabel>
-                                    </Step>
+                                <Step>
+                                    <StepLabel>Telephone</StepLabel>
+                                </Step>
+                                <Step>
+                                    <StepLabel>Interview</StepLabel>
+                                </Step>
+                                <Step>
+                                    <StepLabel>Human Resources</StepLabel>
+                                </Step>
+                                <Step>
+                                    <StepLabel>Decision</StepLabel>
+                                </Step>
                             </Stepper>
                         </Box>
-                        <Box sx={{marginLeft:"50px"}}>
+                        <Box sx={{ marginLeft:"50px" }}>
                             <Typography variant="h5">Last Update</Typography>
                             <Typography variant="h8" sx={{ color:"text.secondary" }}>Date: {date.slice(0, 10)}</Typography>
                         </Box>
@@ -48,4 +49,5 @@ const CandidateInfo = ({ candidate }) => {
         </Card>
     )
 }
+
 export default CandidateInfo;

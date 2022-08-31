@@ -1,8 +1,9 @@
-import { Form, Formik } from "formik";
 import { Button, DialogActions, DialogContent } from "@mui/material";
-import FormInput from "../FormInput/FormInput";
-import { createNewCandidate, setNewUserDialog } from "../../redux/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { Form, Formik } from "formik";
+
+import { createNewCandidate, setNewUserDialog } from "../../redux/dataSlice";
+import FormInput from "../FormInput/FormInput";
 
 const NewCandidateForm = () => {
     const { statusData } = useSelector((state) => state.dataReducer)
@@ -12,11 +13,13 @@ const NewCandidateForm = () => {
     return (
             <Formik
                 initialValues={{nameUser:"",email:"",age:"",tel:"",status:idStatus}}
-                 onSubmit={(values) => {dispatch(createNewCandidate(values))}}
+                 onSubmit={(values) => {
+                     dispatch(createNewCandidate(values))
+                 }}
             >
                 {() => (
                     <Form>
-                        <DialogContent dividers sx={{ display:"flex", flexDirection:"column", justifyContent:"center", alignContent:"center"}}>
+                        <DialogContent dividers sx={{ display:"flex", flexDirection:"column", justifyContent:"center", alignContent:"center" }}>
                             <FormInput
                                 name="nameUser"
                                 type="text"
@@ -39,7 +42,7 @@ const NewCandidateForm = () => {
                             />
                         </DialogContent>
                         <DialogActions sx={{ display:"flex", alignContent:"center", justifyContent:"center" }} >
-                            <Button onClick={() => dispatch(setNewUserDialog(false))}  color="error"  variant="contained">
+                            <Button onClick={() => dispatch(setNewUserDialog(false))} color="error" variant="contained">
                                 Cancel
                             </Button>
                             <Button onClick={() => dispatch(setNewUserDialog(false))} type="submit" color="success" variant="contained">

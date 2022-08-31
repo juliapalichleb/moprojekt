@@ -1,12 +1,14 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import _, { isEmpty } from "lodash";
 import axios from "axios";
-import {isEmpty} from "lodash";
 
 export const dataSlice = createSlice({
     name: 'dataReducer',
     initialState: {
         initCandidate:[],
         allCandidate:[],
+        filterResults: [],
+        searchResults: [],
         selectedCandidate:[],
         statusData:[],
         NewUserDialog:false,
@@ -15,23 +17,27 @@ export const dataSlice = createSlice({
         setAllCandidate: (state, action) => {
             state.initCandidate = action.payload
             state.allCandidate = action.payload
-
+            state.filterResults = action.payload
+            state.searchResults = action.payload
         },
         searchingByName: (state, action) => {
-            const searchingText = action.payload;
+            const searchingText = action.payload.toLowerCase();
 
-            state.allCandidate = [...state.initCandidate].filter((data) => data.nameUser.toLowerCase().includes(searchingText.toLowerCase()))
+            state.searchResults = [...state.initCandidate].filter(({ nameUser }) => nameUser.toLowerCase().includes(searchingText))
+            state.allCandidate = _.intersectionWith(state.filterResults,state.searchResults, (x,y) => x._id === y._id )
 
         },
         filterCandidate: (state, action) => {
             const filterData = action.payload;
 
             if(!isEmpty(filterData)) {
-                state.allCandidate = [...state.initCandidate].filter((data) => filterData.includes(data.status.name))
+                state.filterResults = [...state.initCandidate].filter(({ status }) => filterData.includes(status.name))
                     .map((filterData) => {return filterData});
             } else {
-                state.allCandidate = [...state.initCandidate];
+                state.filterResults = [...state.initCandidate];
             }
+
+            state.allCandidate = _.intersectionWith(state.searchResults,state.filterResults, (x,y) => x._id === y._id )
 
         },
         sortingCandidate: (state, action) => {
@@ -61,6 +67,6 @@ export const dataSlice = createSlice({
 })
 
 export const { setSelectedCandidate, setStatusData, setNewUserDialog, createNewCandidate,
-                setAllCandidate,searchingByName, filterCandidate, sortingCandidate} = dataSlice.actions
+                setAllCandidate,searchingByName, filterCandidate, sortingCandidate } = dataSlice.actions
 
 export default dataSlice.reducer

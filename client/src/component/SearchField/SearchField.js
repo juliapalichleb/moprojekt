@@ -1,7 +1,8 @@
-import {IconButton, InputBase, Paper} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import { IconButton, InputBase, Paper } from "@mui/material";
+import { useDispatch } from "react-redux";
+
 import {searchingByName} from "../../redux/dataSlice";
-import {useDispatch} from "react-redux";
 
 const SearchField = () => {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const SearchField = () => {
     return (
         <Paper
             component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, mr:30}}
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, mr:30 }}
         >
             <InputBase
                 sx={{ ml: 1, flex: 1 }}

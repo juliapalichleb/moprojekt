@@ -1,5 +1,6 @@
 import { Button, DialogActions, DialogContent } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 
 import { createNewCandidate, setNewUserDialog } from "../../redux/dataSlice";
@@ -9,12 +10,14 @@ const NewCandidateForm = () => {
     const { statusData } = useSelector((state) => state.dataReducer)
     const idStatus = statusData[4]._id;
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     return (
             <Formik
                 initialValues={{nameUser:"",email:"",age:"",tel:"",status:idStatus}}
                  onSubmit={(values) => {
                      dispatch(createNewCandidate(values))
+                     navigate(0);
                  }}
             >
                 {() => (

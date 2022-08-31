@@ -9,6 +9,7 @@ export const dataSlice = createSlice({
         allCandidate:[],
         filterResults: [],
         searchResults: [],
+        sortResults:[],
         selectedCandidate:[],
         statusData:[],
         NewUserDialog:false,
@@ -19,11 +20,12 @@ export const dataSlice = createSlice({
             state.allCandidate = action.payload
             state.filterResults = action.payload
             state.searchResults = action.payload
+            state.sortResults = action.payload
         },
         searchingByName: (state, action) => {
             const searchingText = action.payload.toLowerCase();
 
-            state.searchResults = [...state.initCandidate].filter(({ nameUser }) => nameUser.toLowerCase().includes(searchingText))
+            state.searchResults = [...state.sortResults].filter(({ nameUser }) => nameUser.toLowerCase().includes(searchingText))
             state.allCandidate = _.intersectionWith(state.filterResults,state.searchResults, (x,y) => x._id === y._id )
 
         },
@@ -31,10 +33,10 @@ export const dataSlice = createSlice({
             const filterData = action.payload;
 
             if(!isEmpty(filterData)) {
-                state.filterResults = [...state.initCandidate].filter(({ status }) => filterData.includes(status.name))
+                state.filterResults = [...state.sortResults].filter(({ status }) => filterData.includes(status.name))
                     .map((filterData) => {return filterData});
             } else {
-                state.filterResults = [...state.initCandidate];
+                state.filterResults = [...state.sortResults];
             }
 
             state.allCandidate = _.intersectionWith(state.searchResults,state.filterResults, (x,y) => x._id === y._id )
@@ -43,10 +45,11 @@ export const dataSlice = createSlice({
         sortingCandidate: (state, action) => {
             const sortingType = action.payload
             if( sortingType === 'Acs' )
-                state.allCandidate = [...state.allCandidate].sort((a,b) => a.date < b.date ? 1 : -1)
+                state.sortResults = [...state.initCandidate].sort((a,b) => a.date < b.date ? 1 : -1)
             if ( sortingType === 'Desc' )
-                state.allCandidate = [...state.allCandidate].sort((a,b) => a.date > b.date ? 1 : -1)
+                state.sortResults = [...state.initCandidate].sort((a,b) => a.date > b.date ? 1 : -1)
 
+            state.allCandidate = state.sortResults
         },
         setSelectedCandidate: (state, action) => {
             state.selectedCandidate = action.payload

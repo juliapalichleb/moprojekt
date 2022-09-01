@@ -13,7 +13,7 @@ const DeletingCandidate = () => {
     }
 
     return (
-        <Button onClick={() => handleClick()} color="error" variant="contained" >
+        <Button onClick={handleClick} color="error" variant="contained" >
             Delete candidate
         </Button>
     )

@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { isEmpty } from "lodash";
 
-import { filterCandidate } from "../../redux/dataSlice";
+import { setFilterCandidate } from "../../redux/dataSlice";
 
  function FilterStatus() {
-     const { statusData } = useSelector((state) => state.dataReducer)
+     const { statusData, initCandidate } = useSelector((state) => state.dataReducer)
      const [statusName, setStatusName] = useState([]);
      const dispatch = useDispatch();
 
     const handleChange = (event) => {
         const {value} = event.target
-        dispatch(filterCandidate(value))
+
+        const filteredResults = [...initCandidate].filter(({ status }) => value.includes(status.name))
+                                .map((filterData) => filterData);
+        dispatch(setFilterCandidate({filter:filteredResults}))
+
         setStatusName(value)
     }
 
@@ -23,7 +27,7 @@ import { filterCandidate } from "../../redux/dataSlice";
             value={statusName}
             onChange={handleChange}
             renderValue={(selected) => isEmpty(selected) ? 'Filter status' : selected.join(', ')}
-            sx={{ minWidth:"200px", color:"#ffffff" }}
+            sx={{ minWidth:"200px", color:"#fff" }}
         >
             {statusData.map((status) => (
                 <MenuItem key={status.name} value={status.name}>

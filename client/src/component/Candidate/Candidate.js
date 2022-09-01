@@ -25,11 +25,12 @@ const Candidate = () => {
                 Add Candidate
             </Button>
 
+            {/*<CandidateList {...props} /> */}
             <Box sx={{ width:"100%", height:"100%", display:"flex", alignItems:"center", flexDirection:"column" }}>
                 {allCandidate && allCandidate.map((user, i) => <CandidateInfo candidate={user} key={i} />)}
             </Box>
 
-             <NewCandidate sx={{ width:"100%" }}/>
+            <NewCandidate sx={{ width:"100%" }} />
         </>
     )
 }

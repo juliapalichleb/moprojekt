@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import _, { isEmpty } from "lodash";
+import {createSlice} from "@reduxjs/toolkit";
+import {intersectionWith, isEmpty, isUndefined, orderBy} from "lodash";
 import axios from "axios";
 
 export const dataSlice = createSlice({
@@ -7,9 +7,7 @@ export const dataSlice = createSlice({
     initialState: {
         initCandidate:[],
         allCandidate:[],
-        filterResults: [],
-        searchResults: [],
-        sortResults:[],
+        filterResults: {"searchState": undefined, "filterState": []},
         selectedCandidate:[],
         statusData:[],
         NewUserDialog:false,
@@ -18,49 +16,28 @@ export const dataSlice = createSlice({
         setAllCandidate: (state, action) => {
             state.initCandidate = action.payload
             state.allCandidate = action.payload
-            state.filterResults = action.payload
-            state.searchResults = action.payload
-            state.sortResults = action.payload
         },
-        searchingByName: (state, action) => {
-            const searchingText = action.payload.toLowerCase();
+        setFilterCandidate: (state, action) => {
+            const { search, filter, sort } = action.payload
 
-            state.searchResults = [...state.sortResults].filter(({ nameUser }) => nameUser.toLowerCase().includes(searchingText))
-            state.allCandidate = _.intersectionWith(state.filterResults,state.searchResults, (x,y) => x._id === y._id )
+            state.filterResults.searchState  = !isUndefined(search) ? search : state.filterResults.searchState
+            state.filterResults.filterState  =!isUndefined(filter) ? filter : state.filterResults.filterState
 
-        },
-        filterCandidate: (state, action) => {
-            const filterData = action.payload;
+            const { searchState, filterState} = state.filterResults
 
-            if(!isEmpty(filterData)) {
-                state.filterResults = [...state.sortResults].filter(({ status }) => filterData.includes(status.name))
-                    .map((filterData) => {return filterData});
-            } else {
-                state.filterResults = [...state.sortResults];
-            }
+            state.allCandidate = (isUndefined(search) &&  isUndefined(filter)) ? state.initCandidate:
+                                 (!isEmpty(searchState) && isEmpty(filterState)) ? searchState :
+                                 intersectionWith(searchState,filterState, (x,y) => x._id === y._id )
 
-            state.allCandidate = _.intersectionWith(state.searchResults,state.filterResults, (x,y) => x._id === y._id )
+            if(!isUndefined(sort))
+            state.allCandidate = orderBy(state.allCandidate, ['date'],[sort])
 
-        },
-        sortingCandidate: (state, action) => {
-            const sortingType = action.payload
-
-            if( sortingType === 'Acs' )
-                state.sortResults = [...state.initCandidate].sort((a,b) => a.date < b.date ? 1 : -1)
-            if ( sortingType === 'Desc' )
-                state.sortResults = [...state.initCandidate].sort((a,b) => a.date > b.date ? 1 : -1)
-            if( sortingType === 'Unsorted')
-                state.sortResults = [...state.initCandidate]
-
-            if(!isEmpty(state.filterResults) && !isEmpty(state.searchResults))
-                state.allCandidate = state.sortResults
         },
         setSelectedCandidate: (state, action) => {
             state.selectedCandidate = action.payload
         },
         setStatusData: (state, action) => {
             state.statusData = action.payload
-
         },
         setNewUserDialog: (state, action) => {
             state.NewUserDialog = action.payload
@@ -73,7 +50,13 @@ export const dataSlice = createSlice({
     },
 })
 
-export const { setSelectedCandidate, setStatusData, setNewUserDialog, createNewCandidate,
-                setAllCandidate,searchingByName, filterCandidate, sortingCandidate } = dataSlice.actions
+export const {
+    setSelectedCandidate,
+    setStatusData,
+    setNewUserDialog,
+    createNewCandidate,
+    setAllCandidate,
+    setFilterCandidate,
+} = dataSlice.actions
 
 export default dataSlice.reducer

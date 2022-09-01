@@ -1,15 +1,18 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, InputBase, Paper } from "@mui/material";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-import {searchingByName} from "../../redux/dataSlice";
+import { setFilterCandidate } from "../../redux/dataSlice";
 
 const SearchField = () => {
+    const { initCandidate } = useSelector((state) => state.dataReducer)
     const dispatch = useDispatch();
 
     const handleChange = (event) => {
-        const value = event.target.value
-        dispatch(searchingByName(value))
+        const { value } = event.target;
+
+        const searchingResults = [...initCandidate].filter(({nameUser}) => nameUser.toLowerCase().includes(value.toLowerCase()))
+        dispatch(setFilterCandidate({search:searchingResults}))
     }
 
     return (

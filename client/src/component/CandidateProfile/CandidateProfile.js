@@ -3,8 +3,8 @@ import Avatar from '@mui/material/Avatar';
 import { useSelector } from "react-redux";
 
 const CandidateProfile = () => {
-    const { selectedCandidate } = useSelector((state) => state.dataReducer)
-    const { nameUser, email, age, tel, date} = selectedCandidate;
+    const { selectedCandidate: { nameUser, email, age, tel, date} } = useSelector((state) => state.dataReducer)
+    // const { nameUser, email, age, tel, date} = selectedCandidate;
 
     return (
     <>

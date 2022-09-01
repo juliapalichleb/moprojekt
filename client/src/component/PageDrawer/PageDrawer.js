@@ -8,8 +8,11 @@ const navigate = useNavigate();
 
     return (
         <Drawer variant="permanent" anchor="left" PaperProps={{sx:{ width: 200,  bgcolor: '#082038', color:"white", borderColor:"rgb(30, 73, 118)" }}}>
-            <List
-            subheader={<ListSubheader sx={{ bgcolor: '#082038',color:"white" }}>Menu</ListSubheader>}>
+            <List subheader={
+                <ListSubheader sx={{ bgcolor: '#082038',color:"white" }}>
+                    Menu
+                </ListSubheader>
+            }>
                 <Divider sx={{ borderColor:"rgb(30, 73, 118)" }} />
                 <ListItemButton onClick={() => navigate('/')}>
                     <FaceRoundedIcon/>

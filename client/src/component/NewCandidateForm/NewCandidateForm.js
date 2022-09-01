@@ -8,13 +8,13 @@ import FormInput from "../FormInput/FormInput";
 
 const NewCandidateForm = () => {
     const { statusData } = useSelector((state) => state.dataReducer)
-    const idStatus = statusData[4]._id;
+    const idStatus = statusData[4]._id;  //prosi się o błąd
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
     return (
             <Formik
-                initialValues={{nameUser:"",email:"",age:"",tel:"",status:idStatus}}
+                initialValues={{ nameUser:"",email:"",age:"",tel:"", status:idStatus }}
                  onSubmit={(values) => {
                      dispatch(createNewCandidate(values))
                      navigate(0);

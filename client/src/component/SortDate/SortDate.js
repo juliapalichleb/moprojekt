@@ -3,28 +3,27 @@ import { useDispatch } from "react-redux";
 import { useState}  from "react";
 import { isEmpty } from "lodash";
 
-import {sortingCandidate} from "../../redux/dataSlice";
+import { setFilterCandidate } from "../../redux/dataSlice";
 
 const SortDate = () => {
     const dispatch = useDispatch();
     const [sortType, setSortType] = useState('');
 
     const handleChange = (event) => {
-        const value = event.target.value
+        const { value } = event.target
         setSortType(value)
-        dispatch(sortingCandidate(value))
+        dispatch(setFilterCandidate({sort:value}))
     }
 
     return (
-            <Select sx={{ minWidth:"200px", color:"#ffffff", mr:2 }}
+            <Select sx={{ minWidth:"200px", color:"#fff", mr:2 }}
                     onChange={handleChange}
                     value={sortType}
                     renderValue={(selected) => isEmpty(selected) ? 'Sort date' : selected}
                     displayEmpty
             >
-                <MenuItem value={'Unsorted'}>Unsorted</MenuItem>
-                <MenuItem value={'Desc'}>Desc</MenuItem>
-                <MenuItem value={'Acs'}>Acs</MenuItem>
+                <MenuItem value={'desc'}>Desc</MenuItem>
+                <MenuItem value={'acs'}>Acs</MenuItem>
             </Select>
     )
 }

@@ -11,12 +11,15 @@ import { setFilterCandidate } from "../../redux/dataSlice";
      const dispatch = useDispatch();
 
     const handleChange = (event) => {
-        const {value} = event.target
+        const { value } = event.target
 
-        const filteredResults = [...initCandidate].filter(({ status }) => value.includes(status.name))
-                                .map((filterData) => filterData);
-        dispatch(setFilterCandidate({filter:filteredResults}))
-
+        if(!isEmpty(value)) {
+            const filteredResults = [...initCandidate].filter(({ status }) => value.includes(status.name))
+                .map((filterData) => filterData);
+            dispatch(setFilterCandidate({filter:filteredResults}))
+        } else {
+            dispatch(setFilterCandidate({filter:initCandidate}))
+        }
         setStatusName(value)
     }
 

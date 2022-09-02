@@ -1,5 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {intersectionWith, isEmpty, isUndefined, orderBy} from "lodash";
+import { createSlice } from "@reduxjs/toolkit";
+import { intersectionWith, isEmpty, isUndefined, orderBy } from "lodash";
 import axios from "axios";
 
 export const dataSlice = createSlice({
@@ -26,7 +26,7 @@ export const dataSlice = createSlice({
             const { searchState, filterState} = state.filterResults
 
             state.allCandidate = (isUndefined(search) &&  isUndefined(filter)) ? state.initCandidate:
-                                 (!isEmpty(searchState) && isEmpty(filterState)) ? searchState :
+                                 (isUndefined(searchState) && !isEmpty(filterState)) ? filterState :
                                  intersectionWith(searchState,filterState, (x,y) => x._id === y._id )
 
             if(!isUndefined(sort))
@@ -43,10 +43,8 @@ export const dataSlice = createSlice({
             state.NewUserDialog = action.payload
         },
         createNewCandidate: (state, action) => {
-
             const newUserData = action.payload;
-          axios.post('http://localhost:5000/users',newUserData)
-
+            axios.post('http://localhost:5000/users',newUserData)
 
         }
     },

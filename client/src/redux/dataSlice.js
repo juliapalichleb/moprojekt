@@ -43,8 +43,10 @@ export const dataSlice = createSlice({
             state.NewUserDialog = action.payload
         },
         createNewCandidate: (state, action) => {
+
             const newUserData = action.payload;
-            axios.post('http://localhost:5000/users',newUserData)
+          axios.post('http://localhost:5000/users',newUserData)
+
 
         }
     },

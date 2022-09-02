@@ -16,6 +16,7 @@ const NewCandidateForm = () => {
             <Formik
                 initialValues={{ nameUser:"",email:"",age:"",tel:"", status:idStatus }}
                  onSubmit={(values) => {
+                     console.log(values)
                      dispatch(createNewCandidate(values))
                      navigate(0);
                  }}
@@ -35,12 +36,12 @@ const NewCandidateForm = () => {
                             />
                             <FormInput
                                 name="age"
-                                type="text"
+                                type="number"
                                 label="Age"
                             />
                             <FormInput
                                 name="tel"
-                                type="text"
+                                type="number"
                                 label="Telephone"
                             />
                         </DialogContent>

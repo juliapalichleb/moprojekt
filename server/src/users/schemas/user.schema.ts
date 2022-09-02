@@ -16,7 +16,7 @@ export class User {
   age: number;
 
   @Prop()
-  tel: string;
+  tel: number;
 
   @Prop()
   date: string;

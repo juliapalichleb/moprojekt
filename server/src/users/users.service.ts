@@ -23,25 +23,18 @@ export class UsersService {
   //   return this.userModel.findOne({ _id });
   // }
 
-  async createUser(
-    email: string,
-    age: number,
-    nameUser: string,
-    tel: string,
-    date: string,
-    status: string,
-  ): Promise<User> {
+  async createUser({ email, age, nameUser, tel, status }): Promise<User> {
     return this.userModel.create({
-      nameUser,
       email,
       age,
+      nameUser,
       tel,
       status,
       date: new Date().toISOString(),
     });
   }
 
-  async updateUser(_id, status, date): Promise<User> {
+  async updateUser(_id, { status, date }): Promise<User> {
     return this.userModel.findOneAndUpdate(
       { _id },
       { status, date },

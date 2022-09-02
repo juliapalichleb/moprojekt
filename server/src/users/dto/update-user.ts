@@ -1,4 +1,10 @@
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+
 export class UpdateUserDto {
-  status: string;
+  @IsDateString()
   date: string;
+
+  @IsString()
+  @IsNotEmpty()
+  status: string;
 }

@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './schemas/user.schema';
@@ -41,15 +42,10 @@ export class UsersController {
   }
 
   @Post()
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.usersService.createUser(
-      createUserDto.email,
-      createUserDto.age,
-      createUserDto.nameUser,
-      createUserDto.tel,
-      createUserDto.date,
-      createUserDto.status,
-    );
+  async createUser(
+    @Body(new ValidationPipe()) createUserDto: CreateUserDto,
+  ): Promise<User> {
+    return this.usersService.createUser(createUserDto);
   }
 
   @Patch(':_id')
@@ -57,10 +53,6 @@ export class UsersController {
     @Param('_id') _id: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<User> {
-    return this.usersService.updateUser(
-      _id,
-      updateUserDto.status,
-      updateUserDto.date,
-    );
+    return this.usersService.updateUser(_id, updateUserDto);
   }
 }

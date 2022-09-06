@@ -1,14 +1,14 @@
-import { TextField, Typography } from "@mui/material";
+import { Alert, TextField } from "@mui/material";
 import { useField } from "formik";
 
 const FormInput = ({ ...props }) => {
-    const [field] = useField(props)
+    const [field, meta] = useField(props)
 
-    //tu sa te podwójne labelki
     return (
         <>
-            <Typography>{props.label}</Typography>
-            <TextField {...field} {...props} variant="outlined" />
+            <TextField {...field} {...props} variant="outlined" sx={{my:1}} />
+            {meta.touched && meta.error &&
+                <Alert severity="error" sx={{marginBottom:'10px'}}>{meta.error}</Alert>}
         </>
     )
 }

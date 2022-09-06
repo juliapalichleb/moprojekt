@@ -10,7 +10,6 @@ export const dataSlice = createSlice({
         filterResults: {"searchState": undefined, "filterState": []},
         selectedCandidate:[],
         statusData:[],
-        NewUserDialog:false,
     },
     reducers: {
         setAllCandidate: (state, action) => {
@@ -39,13 +38,9 @@ export const dataSlice = createSlice({
         setStatusData: (state, action) => {
             state.statusData = action.payload
         },
-        setNewUserDialog: (state, action) => {
-            state.NewUserDialog = action.payload
-        },
         createNewCandidate: (state, action) => {
             const newUserData = action.payload;
             axios.post('http://localhost:5000/users',newUserData)
-
         }
     },
 })
@@ -53,7 +48,6 @@ export const dataSlice = createSlice({
 export const {
     setSelectedCandidate,
     setStatusData,
-    setNewUserDialog,
     createNewCandidate,
     setAllCandidate,
     setFilterCandidate,

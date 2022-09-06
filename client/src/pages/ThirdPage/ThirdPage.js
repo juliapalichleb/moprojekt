@@ -1,28 +1,35 @@
-import { Box, Card, CardContent, Grid } from "@mui/material";
+import { Card, CardContent, Grid } from "@mui/material";
 
-import CandidateProfile from "../../component/CandidateProfile/CandidateProfile";
-import StatusStepper from "../../component/StatusStepper/StatusStepper";
-import DeletingCandidate from "../../component/DeletingCandidate/DeletingCandidate";
+import { CandidateProfile, StatusStepper, DeletingCandidate }  from "../../component/index";
+import styled from "styled-components";
+
+const CandidatePageContainer = styled.div`
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top:5%;
+`
 
 const ThirdPage = () =>
-        <Box sx={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column" }}>
-            <Card sx={{ width:"60%", margin:"100px" }}>
+        <CandidatePageContainer>
+            <Card sx={{ width:"60%"}}>
                 <CardContent>
-                    <Grid container my={2}>
-                        <Grid container spacing={40}  item xs={12} sx={{ display:"flex" }}>
+                        <Grid container spacing={3} variant='gridContainer3'>
                             <CandidateProfile/>
                         </Grid>
 
-                        <Grid container item xs={12} mt={2} spacing={3} sx={{ display:"flex", flexDirection:"column" }}>
+                        <Grid container variant='gridContainer2'>
                             <StatusStepper/>
                         </Grid>
 
-                        <Grid container item xs={12} mt={2} sx={{ display:"flex", alignItems:"center", justifyContent:"center" }}>
-                            <DeletingCandidate sx={{ margin:"50px" }}/>
+                        <Grid container variant='gridContainer1'>
+                            <DeletingCandidate/>
                         </Grid>
-                    </Grid>
                 </CardContent>
             </Card>
-        </Box>
+        </CandidatePageContainer>
 
 export default ThirdPage;

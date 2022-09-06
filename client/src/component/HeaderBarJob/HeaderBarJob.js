@@ -1,14 +1,17 @@
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
+import styled from "styled-components";
 
+const PageTitle = styled.div`
+  flex-grow: 4;
+  font-size: clamp(20px, 4vw, 25px);
+`
 const HeaderBarJob = () =>
-    <Box sx={{ height:"80px" }}>
-        <AppBar position="static" sx={{ background:"#082038"}}>
+        <AppBar position="static" sx={{ background:"#082038", py:0.3}}>
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <PageTitle>
                     Job Offer
-                </Typography>
+                </PageTitle>
             </Toolbar>
         </AppBar>
-    </Box>
 
 export default HeaderBarJob;

@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { User, UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Query } from 'mongoose';
+import { Status, StatusDocument } from '../status/schemas/status.schema';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(Status.name) private statusModel: Model<StatusDocument>,
+  ) {}
 
   async getWithStatus() {
     return this.userModel.find().populate('status');
@@ -23,24 +27,17 @@ export class UsersService {
   //   return this.userModel.findOne({ _id });
   // }
 
-  async createUser({ email, age, nameUser, tel, status }): Promise<User> {
+  async createUser(createUserDto): Promise<User> {
     return this.userModel.create({
-      email,
-      age,
-      nameUser,
-      tel,
-      status,
+      ...createUserDto,
       date: new Date().toISOString(),
+      status: '630785f7e3b2f4da2fbc42f2',
     });
   }
 
-  async updateUser(_id, { status, date }): Promise<User> {
-    return this.userModel.findOneAndUpdate(
-      { _id },
-      { status, date },
-      {
-        new: true,
-      },
-    );
+  async updateUser(_id, updateUserDto): Promise<User> {
+    return this.userModel.findOneAndUpdate({ _id }, updateUserDto, {
+      new: true,
+    });
   }
 }

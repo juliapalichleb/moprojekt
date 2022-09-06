@@ -1,15 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Button } from "@mui/material";
-import { useEffect } from "react";
+import { Button } from "@mui/material";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
-import { setAllCandidate, setNewUserDialog, setStatusData } from "../../redux/dataSlice";
-import CandidateInfo from "../CandidateInfo/CandidateInfo";
-import NewCandidate from "../NewCandidate/NewCandidate";
+import { setAllCandidate, setStatusData } from "../../redux/dataSlice";
+import { CandidateList, NewCandidateForm } from "../index"
 
 const Candidate = () => {
+    const [isOpenCandidateForm, setIsOpenCandidateForm] = useState(false);
     const { allCandidate } = useSelector( (state) => state.dataReducer)
-
     const dispatch = useDispatch();
 
     useEffect( () => {
@@ -24,16 +23,13 @@ const Candidate = () => {
 
     return (
         <>
-            <Button variant="contained" onClick={() => dispatch(setNewUserDialog(true))} sx={{ ml:3, bgcolor:"#1976d2" }}>
+            <Button variant="contained" styled="AddButton" onClick={() => setIsOpenCandidateForm(true)}>
                 Add Candidate
             </Button>
 
-            {/*<CandidateList {...props} /> */}
-            <Box sx={{ width:"100%", height:"100%", display:"flex", alignItems:"center", flexDirection:"column" }}>
-                {allCandidate && allCandidate.map((user, i) => <CandidateInfo candidate={user} key={i} />)}
-            </Box>
+            {allCandidate && <CandidateList allCandidate={allCandidate} />}
 
-            <NewCandidate sx={{ width:"100%" }} />
+            {isOpenCandidateForm && <NewCandidateForm setIsOpenCandidateForm={setIsOpenCandidateForm} isOpenCandidateForm={isOpenCandidateForm} sx={{ width:"100%" }} />}
         </>
     )
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import axios from "axios";
 
-import JobInfo from "../JobInfo/JobInfo";
+import { JobInfo } from "../index";
 
 const JobOffer = () => {
     const [dataGet, setDataGet] = useState();

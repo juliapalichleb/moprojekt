@@ -1,29 +1,31 @@
-import { Button, DialogActions, DialogContent } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 
-import { createNewCandidate, setNewUserDialog } from "../../redux/dataSlice";
-import FormInput from "../FormInput/FormInput";
+import { createNewCandidate } from "../../redux/dataSlice";
+import { FormInput } from "../index";
+import { CandidateFormSchema } from "../../schemas/CandidateFormSchema";
 
-const NewCandidateForm = () => {
-    const { statusData } = useSelector((state) => state.dataReducer)
-    const idStatus = statusData[4]._id;  //prosi się o błąd
+const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
     return (
+        <Dialog open={isOpenCandidateForm} >
             <Formik
-                initialValues={{ nameUser:"",email:"",age:"",tel:"", status:idStatus }}
-                 onSubmit={(values) => {
-                     console.log(values)
+                initialValues={{ nameUser:"",email:"",age:"",tel:"" }}
+                validationSchema={ CandidateFormSchema }
+                onSubmit={(values) => {
                      dispatch(createNewCandidate(values))
+                     setIsOpenCandidateForm(false)
                      navigate(0);
                  }}
             >
                 {() => (
                     <Form>
-                        <DialogContent dividers sx={{ display:"flex", flexDirection:"column", justifyContent:"center", alignContent:"center" }}>
+                        <DialogTitle>Adding new candidate form</DialogTitle>
+                        <DialogContent variant='DialogContent1' dividers>
                             <FormInput
                                 name="nameUser"
                                 type="text"
@@ -45,17 +47,18 @@ const NewCandidateForm = () => {
                                 label="Telephone"
                             />
                         </DialogContent>
-                        <DialogActions sx={{ display:"flex", alignContent:"center", justifyContent:"center" }} >
-                            <Button onClick={() => dispatch(setNewUserDialog(false))} color="error" variant="contained">
+                        <DialogActions variant='DialogActions1'>
+                            <Button onClick={() => setIsOpenCandidateForm(false)} color="error" variant="contained">
                                 Cancel
                             </Button>
-                            <Button onClick={() => dispatch(setNewUserDialog(false))} type="submit" color="success" variant="contained">
+                            <Button type="submit" color="success" variant="contained">
                                 Confirmed
                             </Button>
                         </DialogActions>
                     </Form>
                 )}
             </Formik>
+        < /Dialog>
     )
 }
 

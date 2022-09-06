@@ -1,25 +1,25 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import { useSelector } from "react-redux";
+import dateFormat from "dateformat";
 
 const CandidateProfile = () => {
-    const { selectedCandidate: { nameUser, email, age, tel, date} } = useSelector((state) => state.dataReducer)
-    // const { nameUser, email, age, tel, date} = selectedCandidate;
+    const { selectedCandidate: { nameUser, email, age, tel, date }} = useSelector((state) => state.dataReducer)
 
     return (
     <>
-        <Grid item sx={{ display:"flex" }}>
-            <Avatar sx={{ width: 100, height:100, mr: 3 }}/>
-            <Box>
+        <Grid item>
+            <Avatar sx={{ width: 100, height:100 }}/>
+        </Grid>
+        <Grid item sx={{ flexGrow: 6 }}>
                 <Typography variant="h4">{nameUser}</Typography>
-                <Typography variant="h8" sx={{ color:"text.secondary" }}>E-mail: {email}</Typography>
-                <Typography variant="body2" sx={{ color:"text.secondary" }}>Age: {age}</Typography>
-                <Typography variant="body2" sx={{ color:"text.secondary" }}>tel: {tel}</Typography>
-            </Box>
+                <Typography color="text.secondary">E-mail: {email}</Typography>
+                <Typography color="text.secondary">Age: {age}</Typography>
+                <Typography color="text.secondary">tel: {tel}</Typography>
         </Grid>
         <Grid item>
             <Typography variant="h4">Last Update</Typography>
-            <Typography variant="h5" sx={{ color:"text.secondary" }}>{date.slice(0, 10)}</Typography>
+            <Typography variant="h5" color="text.secondary">{dateFormat(date, "paddedShortDate")}</Typography>
         </Grid>
     </>
     )

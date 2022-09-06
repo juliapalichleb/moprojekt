@@ -11,21 +11,18 @@ const SearchField = () => {
     const handleChange = (event) => {
         const { value } = event.target;
 
-        const searchingResults = [...initCandidate].filter(({nameUser}) => nameUser.toLowerCase().includes(value.toLowerCase()))
+        const searchingResults = [...initCandidate].filter(({ nameUser }) => nameUser.toLowerCase().includes(value.toLowerCase()))
         dispatch(setFilterCandidate({search:searchingResults}))
     }
 
     return (
-        <Paper
-            component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, mr:30 }}
-        >
+        <Paper component="form" styled='SearchInput'>
             <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search by name"
                 onChange={handleChange}
             />
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+            <IconButton type="button" sx={{ p: '10px' }}>
                 <SearchIcon />
             </IconButton>
         </Paper>

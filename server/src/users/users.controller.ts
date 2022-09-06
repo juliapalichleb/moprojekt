@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  ValidationPipe,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './schemas/user.schema';
@@ -42,9 +41,7 @@ export class UsersController {
   }
 
   @Post()
-  async createUser(
-    @Body(new ValidationPipe()) createUserDto: CreateUserDto,
-  ): Promise<User> {
+  async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(createUserDto);
   }
 

@@ -1,10 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 
-import PageDrawer from "./component/PageDrawer/PageDrawer";
-import FirstPage from "./pages/FirstPage/FirstPage";
-import SecondPage from "./pages/SecondPage/SecondPage";
-import ThirdPage from "./pages/ThirdPage/ThirdPage";
+import { PageDrawer } from "./component/index";
+import { FirstPage, SecondPage, ThirdPage } from "./pages/index";
 import './App.css';
 
 function App() {

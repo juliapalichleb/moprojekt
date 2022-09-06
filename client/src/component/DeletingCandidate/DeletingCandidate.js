@@ -4,16 +4,16 @@ import { Button } from "@mui/material";
 import axios from "axios";
 
 const DeletingCandidate = () => {
-    const { selectedCandidate } = useSelector((state) => state.dataReducer)
+    const { selectedCandidate: {_id } } = useSelector((state) => state.dataReducer)
     const navigate = useNavigate();
 
     const handleClick = () => {
-        axios.delete('http://localhost:5000/users/'+ selectedCandidate._id)
+        axios.delete('http://localhost:5000/users/'+ _id)
         navigate("/")
     }
 
     return (
-        <Button onClick={handleClick} color="error" variant="contained" >
+        <Button onClick={handleClick} color="error" variant="contained">
             Delete candidate
         </Button>
     )

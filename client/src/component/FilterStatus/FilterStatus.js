@@ -14,7 +14,7 @@ import { setFilterCandidate } from "../../redux/dataSlice";
         const { value } = event.target
 
         if(!isEmpty(value)) {
-            const filteredResults = [...initCandidate].filter(({ status }) => value.includes(status.name))
+            const filteredResults = [...initCandidate].filter(({ status: { name } }) => value.includes(name))
                 .map((filterData) => filterData);
             dispatch(setFilterCandidate({filter:filteredResults}))
         } else {
@@ -25,17 +25,17 @@ import { setFilterCandidate } from "../../redux/dataSlice";
 
     return (
         <Select
+            styled='SearchInput'
             displayEmpty
             multiple
             value={statusName}
             onChange={handleChange}
             renderValue={(selected) => isEmpty(selected) ? 'Filter status' : selected.join(', ')}
-            sx={{ minWidth:"200px", color:"#fff" }}
         >
-            {statusData.map((status) => (
-                <MenuItem key={status.name} value={status.name}>
-                    <Checkbox checked={statusName.indexOf(status.name) !== -1} />
-                    <ListItemText primary={status.name} />
+            {statusData.map(({ name }) => (
+                <MenuItem key={name} value={name}>
+                    <Checkbox checked={statusName.indexOf(name) !== -1} />
+                    <ListItemText primary={name} />
                 </MenuItem>
             ))}
         </Select>

@@ -16,15 +16,16 @@ const SortDate = () => {
     }
 
     return (
-            <Select sx={{ minWidth:"200px", color:"#fff", mr:2 }}
-                    onChange={handleChange}
-                    value={sortType}
-                    renderValue={(selected) => isEmpty(selected) ? 'Sort date' : selected}
-                    displayEmpty
-            >
-                <MenuItem value={'desc'}>Desc</MenuItem>
-                <MenuItem value={'acs'}>Acs</MenuItem>
-            </Select>
+        <Select
+            styled='SearchInput'
+            onChange={handleChange}
+            value={sortType}
+            renderValue={(selected) => isEmpty(selected) ? 'Sort date' : selected}
+            displayEmpty
+        >
+            <MenuItem value={'desc'}>Desc</MenuItem>
+            <MenuItem value={'acs'}>Acs</MenuItem>
+        </Select>
     )
 }
 

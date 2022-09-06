@@ -1,0 +1,35 @@
+1. Po wejściu na taba w menu requesty leca x2. Każdy request raz.
+2. Dodaj szczegóły do oferty pracy oraz: usuwanie, dodawanie, edytowanie pozycji.
+3. Labelki do inputów  w form są podwójne. Zostaw te z MUI
+4. Walidacja form
+5. Po dodaniu usera lecą requesty x2 (patrz pkt 1). Nowy user musi być na samej górze listy.
+6. Sortowanie, filtrowanie i szukanie musi pracować razem
+
+SERWER:
+1. Uporządkuj controlery/moduły/ serwisy
+2. CreateUserDto oraz User schema=> nie musi być userName bo to jest w Userze więc tylko name
+3. createUser w controller => przekaż całego usera, a nie wszystkie atrybuty 
+4. Pozbądz się date = undefined w createUser. Może być np.: date?
+5. Rozszerz updejtowanie usera o więcej niż datę i status
+6. Dodaj do projektu class-validator npm
+7. statusy to powinien być enum
+
+CLIENT:
+1. import _, { isEmpty } from "lodash";  Wszystko w {}
+2. initialState, bądź konsekwentna w patternie nazewnictwa, czyli z dużej czy małej
+3. Jak dla takiej małej apki masz za dużo pozycji w initialState. Please reduce
+4. setAllCandidate -> payload akcji nie może ustawiać wielu rzeczy, tylko jedną. W tym przypadku kandydatów.
+5. sortowanie w komponencie. Filtrowanie, sortowanie itp. spróbuj w 1 metodzie.
+6. sortowanie za długie. Zobacz opcje, żeby nie było aż 4 ifów (minor prio)
+7. Importy do poprawki. Componenty z 1 miejsca np. index, żeby uniknąć 10 linijek typu "../../components/" => name imports instead of default
+8. Formatowanie - odstępy
+9. Stylowanie koniecznie do zmiany, żeby unikać właśnie dłuuuugich inline style. Zobacz na MUI /stackoverflow jak wyciagac style nad komponent
+10. Nie nazywaj l.poj. rzeczy l.mn
+11. setNewUserDialog w komponencie w useState (Mój błąd . To tylko sugestia i kwestia smaku. Twój też może byc lepszy:) )
+12. Lista userów do osobnego komponentu a nie do BOX
+13. date.slice(0, 10) użuj jakiegoś formatu lub biblioteki
+
+----
+isAlpha zeby ze spacja działało 
+
+

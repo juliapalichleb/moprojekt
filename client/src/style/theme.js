@@ -117,7 +117,12 @@ export const theme1  = {
         MuiDrawer: {
            defaultProps: {
                PaperProps: {
-sx:{ width: 200,  bgcolor: '#082038', color:"white", borderColor:"rgb(30, 73, 118)" }
+                    sx: {
+                        width: 200,
+                        bgcolor: '#082038',
+                        color:"white",
+                        borderColor:"rgb(30, 73, 118)"
+                    }
                }
            }
         },

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import dateFormat from "dateformat";
 
 const CandidateProfile = () => {
-    const { selectedCandidate: { nameUser, email, age, tel, date }} = useSelector((state) => state.dataReducer)
+    const { selectedCandidate: { name, email, age, tel, date }} = useSelector((state) => state.dataReducer)
 
     return (
     <>
@@ -12,7 +12,7 @@ const CandidateProfile = () => {
             <Avatar sx={{ width: 100, height:100 }}/>
         </Grid>
         <Grid item sx={{ flexGrow: 6 }}>
-                <Typography variant="h4">{nameUser}</Typography>
+                <Typography variant="h4">{name}</Typography>
                 <Typography color="text.secondary">E-mail: {email}</Typography>
                 <Typography color="text.secondary">Age: {age}</Typography>
                 <Typography color="text.secondary">tel: {tel}</Typography>

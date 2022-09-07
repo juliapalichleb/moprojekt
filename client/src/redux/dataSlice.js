@@ -14,7 +14,7 @@ export const dataSlice = createSlice({
     reducers: {
         setAllCandidate: (state, action) => {
             state.initCandidate = action.payload
-            state.allCandidate = action.payload
+            state.allCandidate = orderBy(action.payload, ['date'],['desc'])
         },
         setFilterCandidate: (state, action) => {
             const { search, filter, sort } = action.payload

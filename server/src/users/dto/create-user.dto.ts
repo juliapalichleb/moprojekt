@@ -8,7 +8,7 @@ export class CreateUserDto {
   age: number;
 
   @IsAlpha('pl-PL')
-  nameUser: string;
+  name: string;
 
   @IsNumber()
   tel: number;

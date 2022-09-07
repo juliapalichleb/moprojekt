@@ -14,7 +14,7 @@ const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
     return (
         <Dialog open={isOpenCandidateForm} >
             <Formik
-                initialValues={{ nameUser:"",email:"",age:"",tel:"" }}
+                initialValues={{ name:"", email:"", age:"", tel:"" }}
                 validationSchema={ CandidateFormSchema }
                 onSubmit={(values) => {
                      dispatch(createNewCandidate(values))
@@ -27,7 +27,7 @@ const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
                         <DialogTitle>Adding new candidate form</DialogTitle>
                         <DialogContent variant='DialogContent1' dividers>
                             <FormInput
-                                name="nameUser"
+                                name="name"
                                 type="text"
                                 label="Candidate name"
                             />

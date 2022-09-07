@@ -12,13 +12,11 @@ const Candidate = () => {
     const dispatch = useDispatch();
 
     useEffect( () => {
+         axios.get('http://localhost:5000/users')
+            .then(({ data }) => dispatch(setAllCandidate(data)))
 
-             axios.get('http://localhost:5000/users')
-                .then(({ data }) => dispatch(setAllCandidate(data)))
-
-            axios.get('http://localhost:5000/status')
-                .then(({ data }) => dispatch(setStatusData(data)))
-
+        axios.get('http://localhost:5000/status')
+            .then(({ data }) => dispatch(setStatusData(data)))
     },[dispatch])
 
     return (

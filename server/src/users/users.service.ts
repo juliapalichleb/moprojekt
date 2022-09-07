@@ -2,14 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { User, UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Query } from 'mongoose';
-import { Status, StatusDocument } from '../status/schemas/status.schema';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectModel(Status.name) private statusModel: Model<StatusDocument>,
-  ) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async getWithStatus() {
     return this.userModel.find().populate('status');

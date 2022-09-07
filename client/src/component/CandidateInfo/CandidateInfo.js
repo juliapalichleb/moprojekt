@@ -6,7 +6,7 @@ import { setSelectedCandidate } from "../../redux/dataSlice";
 import dateFormat from "dateformat";
 
 const CandidateInfo = ({ candidate }) => {
-    const { nameUser, email, age, tel, status, date } = candidate;
+    const { name, email, age, tel, status, date } = candidate;
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const CandidateInfo = ({ candidate }) => {
         <Card variant="ClickableCard" onClick={handleClick}>
                 <CardContent sx={{ display:"flex"}}>
                         <Grid sx={{flexGrow: 10}} >
-                            <Typography variant="h5">{nameUser}</Typography>
+                            <Typography variant="h5">{name}</Typography>
                             <Typography variant="h8" color="text.secondary">E-mail: {email}</Typography>
                             <Typography variant="body2" color="text.secondary">Age: {age}</Typography>
                             <Typography variant="body2" color="text.secondary">tel: {tel}</Typography>

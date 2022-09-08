@@ -1,4 +1,4 @@
-import { IsAlpha, IsEmail, IsNumber } from 'class-validator';
+import { IsEmail, IsNumber, Matches } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
@@ -7,7 +7,7 @@ export class CreateUserDto {
   @IsNumber()
   age: number;
 
-  @IsAlpha('pl-PL')
+  @Matches(/^[a-z ,.'-]+$/i)
   name: string;
 
   @IsNumber()

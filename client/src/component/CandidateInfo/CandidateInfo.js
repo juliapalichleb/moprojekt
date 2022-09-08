@@ -16,7 +16,7 @@ const CandidateInfo = ({ candidate }) => {
     }
 
     return (
-        <Card variant="ClickableCard" onClick={handleClick} >
+        <Card variant="ClickableCard" onClick={handleClick}>
                 <CardContent sx={{ display:"flex"}}>
                         <Grid sx={{flexGrow: 10}} >
                             <Typography variant="h5">{name}</Typography>

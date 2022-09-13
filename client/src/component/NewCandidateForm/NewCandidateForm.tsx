@@ -1,20 +1,34 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
+import React, {FC} from "react";
 
-import { createNewCandidate } from "../../redux/dataSlice";
-import { FormInput } from "../index";
 import { CandidateFormSchema } from "../../schemas/CandidateFormSchema";
+import { createNewCandidate } from "../../redux/dataSlice";
+import { useAppDispatch } from "../../Hooks/Hooks";
+import { FormInput } from "../index";
 
-const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
-    const dispatch = useDispatch();
+interface NewCandidateFormProps {
+    isOpenCandidateForm: boolean;
+    setIsOpenCandidateForm: (val: boolean) => void;
+}
+
+interface MyFormValues {
+    name: string,
+    email: string,
+    age: string,
+    tel: string
+}
+
+const NewCandidateForm: FC<NewCandidateFormProps> = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate()
 
+    const initialValues: MyFormValues = { name:"", email:"", age:"", tel:"" };
     return (
-        <Dialog open={isOpenCandidateForm} >
+        <Dialog open={isOpenCandidateForm}>
             <Formik
-                initialValues={{ name:"", email:"", age:"", tel:"" }}
+                initialValues={initialValues}
                 validationSchema={ CandidateFormSchema }
                 onSubmit={(values) => {
                      dispatch(createNewCandidate(values))
@@ -25,7 +39,8 @@ const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
                 {() => (
                     <Form>
                         <DialogTitle>Adding new candidate form</DialogTitle>
-                        <DialogContent variant='DialogContent1' dividers>
+                        <DialogContent sx={{display:"flex", alignItems:"center", justifyContent:"center",
+                            flexDirection:"column"}} dividers>
                             <FormInput
                                 name="name"
                                 type="text"
@@ -47,7 +62,7 @@ const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
                                 label="Telephone"
                             />
                         </DialogContent>
-                        <DialogActions variant='DialogActions1'>
+                        <DialogActions sx={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                             <Button onClick={() => setIsOpenCandidateForm(false)} color="error" variant="contained">
                                 Cancel
                             </Button>
@@ -58,7 +73,7 @@ const NewCandidateForm = ({ setIsOpenCandidateForm, isOpenCandidateForm }) => {
                     </Form>
                 )}
             </Formik>
-        < /Dialog>
+        </Dialog>
     )
 }
 

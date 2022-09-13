@@ -1,18 +1,11 @@
 baceknd id dla setp 0
 joboffer do zmiany
----------------
-1. Po wejściu na taba w menu requesty leca x2. Każdy request raz.
-5. Po dodaniu usera lecą requesty x2 (patrz pkt 1). Nowy user musi być na samej górze listy.
-
 2. Dodaj szczegóły do oferty pracy oraz: usuwanie, dodawanie, edytowanie pozycji.
 5. Rozszerz updejtowanie usera o więcej niż datę i status
+---------------
+
+1. Po wejściu na taba w menu requesty leca x2. Każdy request raz.
+5. Po dodaniu usera lecą requesty x2 (patrz pkt 1).
 
 
-SERWER:
-1. Uporządkuj controlery/moduły/ serwisy
-2. CreateUserDto oraz User schema=> nie musi być userName bo to jest w Userze więc tylko name
-7. statusy to powinien być enum
 
-CLIENT:
-
-9. Stylowanie koniecznie do zmiany, żeby unikać właśnie dłuuuugich inline style. Zobacz na MUI /stackoverflow jak wyciagac style nad komponent

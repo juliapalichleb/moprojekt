@@ -1,14 +1,36 @@
-import { Card, CardContent, Grid, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Step, StepLabel, Stepper, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import dateFormat from "dateformat";
+import React, { FC } from "react";
 
 import { setSelectedCandidate } from "../../redux/dataSlice";
-import dateFormat from "dateformat";
+import { Candidate } from "../../interfaces/Candidate";
+import { useAppDispatch } from "../../Hooks/Hooks";
 
-const CandidateInfo = ({ candidate }) => {
+const ClickableCard = styled(Card)({
+    width:"50%",
+    margin:"5px",
+    padding:"5px",
+
+    '&:hover': {
+        opacity:'0.9',
+        cursor: 'pointer'
+    },
+    '&:active': {
+        background: "",
+        transform: 'translateY(4px)',
+        cursor: 'pointer'
+    }
+}) as typeof Card;
+
+interface ICandidateInfo {
+    candidate: Candidate,
+}
+
+const CandidateInfo: FC<ICandidateInfo> = ({ candidate }) => {
     const { name, email, age, tel, status, date } = candidate;
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleClick = () => {
         dispatch(setSelectedCandidate(candidate))
@@ -16,15 +38,15 @@ const CandidateInfo = ({ candidate }) => {
     }
 
     return (
-        <Card variant="ClickableCard" onClick={handleClick}>
+        <ClickableCard onClick={handleClick}>
                 <CardContent sx={{ display:"flex"}}>
-                        <Grid sx={{flexGrow: 10}} >
+                        <Grid sx={{ flexGrow: 10 }} >
                             <Typography variant="h5">{name}</Typography>
-                            <Typography variant="h8" color="text.secondary">E-mail: {email}</Typography>
+                            <Typography variant="body2" color="text.secondary">E-mail: {email}</Typography>
                             <Typography variant="body2" color="text.secondary">Age: {age}</Typography>
                             <Typography variant="body2" color="text.secondary">tel: {tel}</Typography>
                         </Grid>
-                        <Grid sx={{flexGrow: 3}}>
+                        <Grid sx={{ flexGrow: 3 }}>
                             <Stepper activeStep={status.step} alternativeLabel>
                                 <Step>
                                     <StepLabel>Telephone</StepLabel>
@@ -42,10 +64,10 @@ const CandidateInfo = ({ candidate }) => {
                         </Grid>
                         <Grid>
                             <Typography variant="h5">Last Update</Typography>
-                            <Typography variant="h8" color="text.secondary">Date: {dateFormat(date, "paddedShortDate")}</Typography>
+                            <Typography variant="body2" color="text.secondary">Date: {dateFormat(date, "paddedShortDate")}</Typography>
                         </Grid>
                 </CardContent>
-        </Card>
+        </ClickableCard>
     )
 }
 

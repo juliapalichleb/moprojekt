@@ -1,5 +1,6 @@
 import { AppBar, Toolbar } from "@mui/material";
 import styled from 'styled-components';
+import React from "react";
 
 import { FilterSystem } from "../index";
 
@@ -9,7 +10,7 @@ const PageTitle = styled.div`
 `
 
 const HeaderBarCandidate = () =>
-        <AppBar position="static" sx={{ background:"#082038", py:0.3}}>
+        <AppBar position="static" sx={{ background:"#082038", py:0.3 }}>
             <Toolbar>
                 <PageTitle>
                     Candidate

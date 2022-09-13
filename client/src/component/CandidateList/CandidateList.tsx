@@ -1,4 +1,7 @@
+import React, { FC } from "react";
 import styled from "styled-components";
+
+import { Candidate } from "../../interfaces/Candidate";
 import { CandidateInfo } from "../index";
 
 const CandidateListContainer = styled.div`
@@ -9,7 +12,11 @@ const CandidateListContainer = styled.div`
   flex-direction: column;
 `
 
-const CandidateList = ({ allCandidate }) =>
+interface ICandidateList {
+    allCandidate:Candidate[],
+}
+
+const CandidateList: FC<ICandidateList> = ({ allCandidate }) =>
     <CandidateListContainer>
         {allCandidate.map((user, i) => <CandidateInfo candidate={user} key={i} />)}
     </CandidateListContainer>

@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../Hooks/Hooks";
 import { Button } from "@mui/material";
 import axios from "axios";
+import React from "react";
 
 const DeletingCandidate = () => {
-    const { selectedCandidate: {_id } } = useSelector((state) => state.dataReducer)
+    const { selectedCandidate: {_id } } = useAppSelector((state) => state.dataReducer)
     const navigate = useNavigate();
 
     const handleClick = () => {

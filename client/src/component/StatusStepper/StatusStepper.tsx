@@ -1,21 +1,30 @@
 import { Button, Grid, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import axios from "axios";
+import React from "react";
+
+import { useAppSelector } from "../../Hooks/Hooks";
+
+const styles = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "10px"
+}
 
 const StatusStepper = () => {
-    const { selectedCandidate: { _id, status }, statusData } = useSelector((state) => state.dataReducer)
+    const { selectedCandidate: { _id, status }, statusData } = useAppSelector((state) => state.dataReducer)
     const navigate = useNavigate();
 
-    const handleClick = (number) => {
+    const handleClick = (number: string) => {
         const date = `${new Date().toISOString()}`;
-        axios.patch('http://localhost:5000/users/'+ _id,{status:number, date:date})
+        axios.patch('http://localhost:5000/users/'+ _id,{status: number, date: date})
         navigate("/")
     }
 
     return (
         <>
-            <Grid item variant='gridContainer1'>
+            <Grid item sx={styles}>
                 <Typography variant="h4">Current Status</Typography>
             </Grid>
 

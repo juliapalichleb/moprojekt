@@ -1,10 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../Hooks/Hooks";
 import dateFormat from "dateformat";
+import React from "react";
 
 const CandidateProfile = () => {
-    const { selectedCandidate: { name, email, age, tel, date }} = useSelector((state) => state.dataReducer)
+    const { selectedCandidate: { name, email, age, tel, date }} = useAppSelector((state) => state.dataReducer)
 
     return (
     <>

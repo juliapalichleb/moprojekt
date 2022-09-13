@@ -1,6 +1,9 @@
 import { Card, CardContent, ListItemButton, Typography } from "@mui/material";
+import React, { FC } from "react";
 
-const JobInfo = ({ job: { name } }) =>
+import { Jobs } from "../../interfaces/Jobs";
+
+const JobInfo: FC<Jobs> = ( {name} ) =>
     <Card sx={{ width:"80%", margin:"5px" }}>
         <ListItemButton>
             <CardContent>

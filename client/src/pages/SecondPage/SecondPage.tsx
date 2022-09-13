@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
+import React from "react";
 
-import { HeaderBarJob, JobOffer }  from "../../component/index";
+import { HeaderBarJob, JobOffer }  from "../../component";
 
 const SecondPage = () =>
     <>
